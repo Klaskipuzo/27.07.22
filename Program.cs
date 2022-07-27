@@ -7,7 +7,7 @@ namespace dz_dairy
     {
         static void Main(string[] args)
         {
-            //1
+            //1.
             Console.WriteLine("Введите слово");
             var userEnterText = Console.ReadLine();
             Console.WriteLine("А теперь введите символ для нахождения доли в %");
