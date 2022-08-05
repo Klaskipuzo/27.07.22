@@ -7,53 +7,21 @@ namespace dz_dairy
     {
         static void Main(string[] args)
         {
-            //1.
-            Console.WriteLine("Введите слово");
-            var userEnterText = Console.ReadLine();
-            Console.WriteLine("А теперь введите символ для нахождения доли в %");
-            var userEnterSymbol = Console.ReadLine();
-            var total = 0;
-            for (int i = 0; i < userEnterText.Length; i++)
-            {
-                if (userEnterSymbol.Contains(userEnterText[i]))
-                {
-                    total++;
+            Console.WriteLine("Введите число в диапазоне от 0 до 1000");
 
-
-                }
-
-            }
-            float percentageShare = 100 / userEnterText.Length * total;
-            Console.WriteLine($"Доля в процентах : {percentageShare}%");
-
-
-            //2
-
-            var numberOfWords = userEnterText.Split(' ').Length; // количество слов
-            Console.WriteLine($"Количество слов {numberOfWords}");
-            //3
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            var enterNumberOfUser = int.Parse(Console.ReadLine());
+            string[] numbersSinglesEnterOfUser = new string[20] {"","один", "два", "три", "четыре", "пять", "шесть",
+            "семь", "восемь", "девять", "десять", "одиннадцать", "двенадцать", "тринадцать",
+            "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать","девятнадцать"};
 
 
 
 
 
         }
+
+
+    
         /// <summary>
         /// Составить программу, которая:
         ///а) запрашивает имя человека и повторяет его на экране;
@@ -340,7 +308,7 @@ namespace dz_dairy
         /// </summary>
         static void dz1_6()
         {
-            //1
+            //1.
             Console.WriteLine("Введите слово");
             var userEnterText = Console.ReadLine();
             Console.WriteLine("А теперь введите символ для нахождения доли в %");
@@ -356,15 +324,224 @@ namespace dz_dairy
                 }
 
             }
-            float dol = 100 / userEnterText.Length * total;
-            Console.WriteLine($"Доля в процентах : {dol}%");
+            float percentageShare = 100 / userEnterText.Length * total;
+            Console.WriteLine($"Доля в процентах : {percentageShare}%");
+
 
             //2
 
             var numberOfWords = userEnterText.Split(' ').Length; // количество слов
             Console.WriteLine($"Количество слов {numberOfWords}");
 
+            //3
 
+            //вспомнить ошибку
+            string[] userTextSeparators = userEnterText.Split(' ');
+
+            foreach (var word in userTextSeparators)
+            {
+                Console.Write($"{word[0]}");
+
+            }
+
+
+            //4
+            Console.WriteLine("\n");
+
+
+            userEnterText = userEnterText.ToLower();
+            char[] vowelsCharsEnterOfUser = { 'а', 'е', 'ё', 'у', 'ы', 'я', 'и', 'о', 'ю', 'э' };
+            int countVowelChar = 0;
+            foreach (char d in userEnterText)
+            {
+                if (vowelsCharsEnterOfUser.Contains(d))
+                {
+                    countVowelChar++;
+                }
+            }
+            Console.WriteLine($"Вы ввели гласных {countVowelChar}");
+
+            Console.WriteLine("\n");
+
+
+            //5
+            bool fiveDoubleChars = false;
+
+            for (int i = 0; i < userEnterText.Length - 1; i++)
+            {
+                if (userEnterText[i] == userEnterText[i + 3])
+                {
+                    fiveDoubleChars = true;
+                    break;
+                }
+
+            }
+
+            if (fiveDoubleChars)
+            {
+                Console.WriteLine("В строке правда есть 5 одинаковых соседствующих символа.");
+            }
+            else
+            {
+                Console.WriteLine("Не правла");
+            }
+            //6
+            Console.WriteLine("\n");
+
+            //7-------------------------//
+
+            //8
+
+            for (int i = userEnterText.Length - 1; i >= 0; i--)
+            {
+                Console.Write(userEnterText[i]);
+            }
+        }
+        /// <summary>
+        ///  Дан текст
+        ///- напечатать все имеющиеся в нем цифры
+        ///- определить количество цифр в нем
+        ///- найти порядковый номер максимальной цифры
+        /// - найти наибольшее количество идущих подряд цифр
+        ///- найти наибольшее количество идущих подряд одинаковых символов
+        /// </summary>
+        static void dz1_7()
+        {
+            var textEnterUser = "123lkfjdgf3211";
+            var countTotal = 0;
+            var indexNumberCurrent = 0;
+            var maxIndexNumbers = textEnterUser[0];
+            //var countTotals = 0;
+            //var countCurrent = 0;
+
+            var maxEnterNumberContract = 0;
+
+            for (int i = 0; i < textEnterUser.Length; i++)
+            {
+                if (char.IsDigit(textEnterUser[i]))
+                {
+                    countTotal++;
+                    Console.Write(textEnterUser[i]);
+                    if (textEnterUser[i] > maxIndexNumbers)
+                    {
+                        maxIndexNumbers = textEnterUser[i];
+                        indexNumberCurrent = i;
+
+                    }
+
+                }
+                if (char.IsDigit(textEnterUser[i]))
+                {
+                    maxEnterNumberContract++;
+                }
+                //if (i != textEnterUser.Length && textEnterUser[i] == textEnterUser[i + 1])
+                //{
+                //    countCurrent++;
+                //}
+                //else if (countCurrent > 0)
+                //{
+                //
+                //    countTotals = 1 + countTotals + countCurrent;
+                //    countCurrent = 0;
+                //    Console.WriteLine(countTotals);
+                //}
+
+            }
+
+
+
+
+
+            Console.WriteLine($"\nКоличество цифр с строке - {countTotal}");
+            Console.WriteLine($"Максимальная цифра в строке - {maxIndexNumbers} а порядковый номер - {indexNumberCurrent}");
+            Console.WriteLine($"Наибольшее количество идущих подряд цифр {maxEnterNumberContract}");
+
+
+        }
+        /// <summary>
+        /// Даны два слова
+        ///- определить, можно ли из букв первого из них получить второе
+        ///- определить пересекающиеся(повторяющиеся) буквы
+        /// </summary>
+
+        static void dz1_8()
+        {
+            var firstWordEnterOfUser = Console.ReadLine();
+            var secondWordEnterOfUser = Console.ReadLine();
+
+            var result = firstWordEnterOfUser.Distinct().Count() == secondWordEnterOfUser.Distinct().Count();
+            Console.WriteLine(result);
+
+            for (int i = 0; i < firstWordEnterOfUser.Length; i++)
+            {
+                if (secondWordEnterOfUser.Contains(firstWordEnterOfUser[i]))
+                {
+                    Console.Write(firstWordEnterOfUser[i]);
+                }
+            };
+        }
+        /// <summary>
+        /// Дан текст. Проверить, правильно ли в нем расставлены круглые скобки 
+        /// (т. е. находится ли справа от каждой открывающей скобки соответствующая ей
+        ///закрывающая скобка, а слева от каждой закрывающей — соответствующая ей закрывающая). 
+        ///Выдать сообщение с указанием позиции первой неправильной скобки.
+        /// </summary>
+
+        static void dz1_9()
+        {
+            Console.WriteLine("Проверяем правильность круглых скобок");
+            Console.WriteLine("Напиши круглые скобки и закрой их");
+            var parenthesesEnterOfUser = Console.ReadLine();
+            var CharArrayParentheses = parenthesesEnterOfUser.ToCharArray();
+            var steckIndexA = 0;
+            var steckIndexB = 0;
+            for (int i = 0; i < CharArrayParentheses.Length; i++)
+            {
+
+                if (CharArrayParentheses[i] == '(')
+                {
+                    steckIndexA += 1;
+                }
+                if (CharArrayParentheses[i] == ')')
+                    if (steckIndexA == 0)
+                    {
+                        if (steckIndexB == 0)
+                            steckIndexB = i + 1;
+                        steckIndexA -= 1;
+                    }
+                    else
+                    {
+                        steckIndexA -= 1;
+                    }
+
+            }
+            if (steckIndexA == 0 && steckIndexB == 0)
+                Console.WriteLine("Все верно");
+
+        }
+        /// <summary>
+        /// Дана строка текста, в котором нет начальных и конечных пробелов.
+        /// Необходимо изменить ее так, чтобы длина строки стала равна заданной длине 
+        /// (предполагается, что требуемая длина не меньше исходной). 
+        /// Это следует сделать путем вставки между словами дополнительных пробелов. 
+        /// Количество пробелов между отдельными словами должно отличаться не более чем на 1. 
+        /// </summary>
+
+        static void dz1_10()
+        {
+            var textEnterOfUser = "Привет мой дорогой друг";
+            string[] stringsSeparatorOfWords = textEnterOfUser.Split(' ');
+            var spaceWordsRepeat = String.Concat(Enumerable.Repeat(" ", 10));
+            var joinedTabulation = string.Join(spaceWordsRepeat, stringsSeparatorOfWords);
+            Console.WriteLine(joinedTabulation);
+        }
+        /// <summary>
+        /// Дано натуральное число n (n <= 1000). 
+        /// Напечатать это число русскими словами 
+        /// (тринадцать, сто пять, двести сорок один, тысяча и т. д.).
+        /// </summary>
+        static void dz1_11()
+        {
 
         }
 
